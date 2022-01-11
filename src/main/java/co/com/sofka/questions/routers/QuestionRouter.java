@@ -139,4 +139,17 @@ public class QuestionRouter {
                 request -> request.bodyToMono(UserDTO.class).flatMap(executor)
         );
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> login(LoginUseCase loginUseCase) {
+        Function<UserDTO, Mono<ServerResponse>> executor = userDTO ->  loginUseCase.apply(userDTO)
+                .flatMap(result -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(result));
+
+        return route(
+                POST("/login").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(UserDTO.class).flatMap(executor)
+        );
+    }
 }

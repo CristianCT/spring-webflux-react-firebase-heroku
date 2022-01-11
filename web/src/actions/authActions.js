@@ -19,7 +19,7 @@ export const failure = () => ({ type: LOADED_FAILURE })
 
 
 
-export const login = (email, uid, name, lastName) => ({ type: LOGIN, payload: {email, uid, name, lastName} })
+//export const login = (email, uid, name, lastName) => ({ type: LOGIN, payload: {email, uid, name, lastName} })
 
 export const logout = () => ({
     type: LOGOUT
@@ -46,6 +46,29 @@ export function update (user){
         try {
             const response = await fetch(
                 `${URL_BASE}/saveUser`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                }
+            )
+            const data = await response.json()
+            dispatch(success({ email: data.email, uid: data.id, name: data.name, lastName: data.lastName } ))
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+};
+
+export function login (user){
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            const response = await fetch(
+                `${URL_BASE}/login`,
                 {
                     method: 'POST',
                     mode: 'cors',

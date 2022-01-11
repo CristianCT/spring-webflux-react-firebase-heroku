@@ -16,11 +16,11 @@ function Footer() {
             <div className="footer-head">
                 <div><span>Get connected with us on social networks:</span></div>
                 <div>
-                    <a className="icon-social-network" target="_blank" href="https://www.facebook.com/sofkatech/"><BsFacebook size={30}/></a>
-                    <a className="icon-social-network" target="_blank" href="https://www.instagram.com/sofka_technologies/?hl=es"><BsInstagram size={30}/></a>
-                    <a className="icon-social-network" target="_blank" href="https://co.linkedin.com/company/sofka-technologies"><BsLinkedin size={30}/></a>
-                    <a className="icon-social-network" target="_blank" href="https://github.com/Sofka-XT"><BsGithub size={30}/></a>
-                    <a className="icon-social-network" target="_blank" href="https://www.youtube.com/channel/UCa6j2dHRleqQciUHLM1FTRw"><BsYoutube size={30}/></a>
+                    <a className="icon-social-network" rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/sofkatech/"><BsFacebook size={30}/></a>
+                    <a className="icon-social-network" rel="noopener noreferrer" target="_blank" href="https://www.instagram.com/sofka_technologies/?hl=es"><BsInstagram size={30}/></a>
+                    <a className="icon-social-network" rel="noopener noreferrer" target="_blank" href="https://co.linkedin.com/company/sofka-technologies"><BsLinkedin size={30}/></a>
+                    <a className="icon-social-network" rel="noopener noreferrer" target="_blank" href="https://github.com/Sofka-XT"><BsGithub size={30}/></a>
+                    <a className="icon-social-network" rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/channel/UCa6j2dHRleqQciUHLM1FTRw"><BsYoutube size={30}/></a>
                 </div>
             </div>
             
@@ -28,7 +28,7 @@ function Footer() {
             <div className="footer-body">
                 <div>
                     <div className="container-img">
-                        <img src="https://www.sofka.com.co/wp-content/uploads/2021/02/Group-35.png" />
+                        <img src="https://www.sofka.com.co/wp-content/uploads/2021/02/Group-35.png" alt="Logo" />
                     </div>
 
                     <div>
