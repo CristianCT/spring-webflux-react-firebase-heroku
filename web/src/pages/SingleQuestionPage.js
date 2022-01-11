@@ -28,10 +28,11 @@ const SingleQuestionPage = ({
   }, [redirect, dispatch, question]);
 
   const voteUp = (vote) => {
+    console.log(vote);
     dispatch(postVote({
       answerId: vote.id,
       questionId: vote.questionId,
-      userId: vote.userId,
+      userId: userId,
       value: 1
     }));
   }
@@ -40,7 +41,7 @@ const SingleQuestionPage = ({
     dispatch(postVote({
       answerId: vote.id,
       questionId: vote.questionId,
-      userId: vote.userId,
+      userId: userId,
       value: -1
     }));
   }
