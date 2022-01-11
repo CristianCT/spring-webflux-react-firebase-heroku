@@ -10,12 +10,12 @@ export const Question = ({ question, excerpt, onDelete, showEmogies, qualifyQues
         showEmogies && 
         <div>
           <div>
-            <button type="button" onClick={() => qualifyQuestion({questionId: question.id, value: 3})} ><BsEmojiLaughing size={35} /></button>
-            <button type="button" onClick={() => qualifyQuestion({questionId: question.id, value: 2})} ><BsEmojiSmile size={35} /></button>
-            <button type="button" onClick={() => qualifyQuestion({questionId: question.id, value: 1})} ><BsEmojiFrown size={35} /></button>
+            <button type="button" onClick={() => qualifyQuestion({questionId: question.id, value: 1})} ><BsEmojiLaughing size={35} /></button>
+            <button type="button" onClick={() => qualifyQuestion({questionId: question.id, value: 0})} ><BsEmojiSmile size={35} /></button>
+            <button type="button" onClick={() => qualifyQuestion({questionId: question.id, value: -1})} ><BsEmojiFrown size={35} /></button>
           </div>
           <div>
-            <p>Promedio: {question.qualification>1.33?"Feliz":question.qualification>0.67?"Satisfecho":"Triste"}</p>
+            <p>Promedio: {question.qualification>0.33?"Feliz":question.qualification>-0.67?"Satisfecho":"Triste"}</p>
           </div>
         </div>
       }
