@@ -12,6 +12,7 @@ public class Question {
     private String question;
     private String type;
     private String category;
+    private Double qualification;
 
 
     public String getId() {
@@ -52,5 +53,13 @@ public class Question {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Double getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(Double qualification) {
+        this.qualification = qualification;
     }
 }

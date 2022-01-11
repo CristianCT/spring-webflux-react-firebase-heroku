@@ -159,3 +159,24 @@ export function deleteVote(vote) {
     }
 }
 
+export function addQualification(qualification) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            await fetch(`${URL_BASE}/addQualification`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(qualification)
+                }
+            )
+            dispatch(success({redirect: `/question/${qualification.questionId}`}));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+

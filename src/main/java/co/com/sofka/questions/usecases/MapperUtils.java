@@ -1,13 +1,7 @@
 package co.com.sofka.questions.usecases;
 
-import co.com.sofka.questions.collections.Answer;
-import co.com.sofka.questions.collections.User;
-import co.com.sofka.questions.collections.Vote;
-import co.com.sofka.questions.collections.Question;
-import co.com.sofka.questions.model.AnswerDTO;
-import co.com.sofka.questions.model.UserDTO;
-import co.com.sofka.questions.model.VoteDTO;
-import co.com.sofka.questions.model.QuestionDTO;
+import co.com.sofka.questions.collections.*;
+import co.com.sofka.questions.model.*;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -61,13 +55,24 @@ public class MapperUtils {
         };
     }
 
+    public Function<QualificationDTO, Qualification> mapperToQualification(){
+        return updateQualification -> {
+            var qualification = new Qualification();
+            qualification.setQuestionId(updateQualification.getQuestionId());
+            qualification.setUserId(updateQualification.getUserId());
+            qualification.setValue(updateQualification.getValue());
+            return qualification;
+        };
+    }
+
     public Function<Question, QuestionDTO> mapEntityToQuestion() {
         return entity -> new QuestionDTO(
                 entity.getId(),
                 entity.getUserId(),
                 entity.getQuestion(),
                 entity.getType(),
-                entity.getCategory()
+                entity.getCategory(),
+                entity.getQualification()
         );
     }
 

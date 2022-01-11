@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchQuestion, postVote } from '../actions/questionActions'
+import { fetchQuestion, postVote, addQualification } from '../actions/questionActions'
 
 import { Question } from '../components/Question'
 import { Answer } from '../components/Answer'
@@ -45,11 +45,15 @@ const SingleQuestionPage = ({
     }));
   }
 
+  const qualify = (qualification) => {
+    dispatch(addQualification({userId, ...qualification}));
+  }
+
   const renderQuestion = () => {
     if (loading.question) return <p>Loading question...</p>
     if (hasErrors.question) return <p>Unable to display question.</p>
 
-    return <Question question={question} />
+    return <Question question={question} showEmogies={true} qualifyQuestion={qualify} />
   }
 
   const renderAnswers = () => {
