@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const PublicNavbar = () => (
-  <nav>
+  <nav style={{ display:"flex", flexDirection: "row" }}>
+    <Link className="logo-page" to="/"><img className="logo-page" src="../logo.png" alt="Logo" width={60} height={60} /></Link>
     <section>
       <Link to="/">Home</Link>
       <Link to="/questions">Questions</Link>
@@ -11,7 +12,8 @@ export const PublicNavbar = () => (
 )
 
 export const PrivateNavbar = () => (
-  <nav>
+  <nav style={{ display:"flex", flexDirection: "row" }}>
+    <Link className="logo-page" to="/"><img className="logo-page" src="../logo.png" alt="Logo" width={60} height={60} /></Link>
     <section>
       <Link to="/">Home</Link>
       <Link to="/questions">Questions</Link>
