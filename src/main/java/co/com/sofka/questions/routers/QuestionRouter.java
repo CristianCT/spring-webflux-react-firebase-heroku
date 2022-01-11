@@ -2,6 +2,7 @@ package co.com.sofka.questions.routers;
 
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
+import co.com.sofka.questions.model.UserDTO;
 import co.com.sofka.questions.model.VoteDTO;
 import co.com.sofka.questions.usecases.*;
 import org.springframework.context.annotation.Bean;
@@ -110,6 +111,32 @@ public class QuestionRouter {
                 request -> ServerResponse.accepted()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(deleteVoteUseCase.apply(new VoteDTO(request.pathVariable("idUser"), request.pathVariable("idQuestion"))), Void.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> getUser(GetUserUseCase getUserUseCase){
+        return route(
+                GET("/getUser/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(getUserUseCase.apply(
+                                request.pathVariable("id")),
+                                UserDTO.class
+                        ))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> saveUser(AddUserUseCase addUserUseCase) {
+        Function<UserDTO, Mono<ServerResponse>> executor = userDTO ->  addUserUseCase.apply(userDTO)
+                .flatMap(result -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(result));
+
+        return route(
+                POST("/saveUser").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(UserDTO.class).flatMap(executor)
         );
     }
 }

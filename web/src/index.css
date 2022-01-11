@@ -127,3 +127,7 @@ body {
     flex-direction: column;
     align-items: center;
   }
+
+  .titulo-datos {
+    margin-bottom: 5px;
+  }

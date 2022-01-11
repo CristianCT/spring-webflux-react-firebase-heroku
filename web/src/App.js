@@ -17,15 +17,17 @@ import QuestionsPage from './pages/QuestionsPage'
 import QuestionFormPage from './pages/QuestionFormPage'
 import AnswerFormPage from './pages/AnswerFormPage'
 import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
+import UserPage from './pages/UserPage'
 import { useAuthState } from "react-firebase-hooks/auth";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCTySyvuIDPg7RWF6ceuuwC2t3BEiAK38o",
-  authDomain: "question-app-demo.firebaseapp.com",
-  projectId: "question-app-demo",
-  storageBucket: "question-app-demo.appspot.com",
-  messagingSenderId: "1038673531562",
-  appId: "1:1038673531562:web:da90421f639a3115dcf6d3"
+  apiKey: "AIzaSyDd5swAYgSfl9IWMFUGS_hy90SQKHtQ1VM",
+  authDomain: "reto-preguntas-respuestas.firebaseapp.com",
+  projectId: "reto-preguntas-respuestas",
+  storageBucket: "reto-preguntas-respuestas.appspot.com",
+  messagingSenderId: "238152011978",
+  appId: "1:238152011978:web:ef2dd9c6398a5b4484a433",
+  measurementId: "G-JW76DE88V2"
 });
 
 const auth = firebase.auth();
@@ -33,7 +35,7 @@ const auth = firebase.auth();
 const App = ({ dispatch }) => {
   const [user] = useAuthState(auth);
   if(user){
-    dispatch(login(user.email, user.uid))
+    dispatch(login(user.email, user.uid, user.displayName, user.displayName))
   }
   return (
     <Router>
@@ -49,6 +51,7 @@ const App = ({ dispatch }) => {
             <Route exact path="/list" component={OwnerQuestionsPage} />
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Route exact path="/new" component={QuestionFormPage} />
+            <Route exact path="/profile" component={UserPage}  />
             <Redirect to="/" />
           </Switch>
         </> :
