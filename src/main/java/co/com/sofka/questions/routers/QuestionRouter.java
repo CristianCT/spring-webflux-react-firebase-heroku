@@ -2,6 +2,7 @@ package co.com.sofka.questions.routers;
 
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
+import co.com.sofka.questions.model.VoteDTO;
 import co.com.sofka.questions.usecases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -86,6 +87,29 @@ public class QuestionRouter {
                 request -> ServerResponse.accepted()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(deleteUseCase.apply(request.pathVariable("id")), Void.class))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> addVote(AddVoteUseCase addVoteUseCase){
+        return route(
+                POST("/addVote").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(VoteDTO.class)
+                .flatMap(addVoteDTO -> addVoteUseCase.apply(addVoteDTO)
+                        .flatMap(result -> ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .bodyValue(result))
+                )
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> deleteVote(DeleteVoteUseCase deleteVoteUseCase) {
+        return route(
+                DELETE("/removeVote/{idUser}/{idQuestion}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.accepted()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(deleteVoteUseCase.apply(new VoteDTO(request.pathVariable("idUser"), request.pathVariable("idQuestion"))), Void.class))
         );
     }
 }

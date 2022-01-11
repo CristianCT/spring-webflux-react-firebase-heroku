@@ -1,8 +1,10 @@
 package co.com.sofka.questions.usecases;
 
 import co.com.sofka.questions.collections.Answer;
+import co.com.sofka.questions.collections.Vote;
 import co.com.sofka.questions.collections.Question;
 import co.com.sofka.questions.model.AnswerDTO;
+import co.com.sofka.questions.model.VoteDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +37,17 @@ public class MapperUtils {
         };
     }
 
+    public Function<VoteDTO, Vote> mapperToVote() {
+        return updateVote -> {
+            var position = new Vote();
+            position.setQuestionId(updateVote.getQuestionId());
+            position.setAnswerId(updateVote.getAnswerId());
+            position.setUserId(updateVote.getUserId());
+            position.setValue(updateVote.getValue());
+            return position;
+        };
+    }
+
     public Function<Question, QuestionDTO> mapEntityToQuestion() {
         return entity -> new QuestionDTO(
                 entity.getId(),
@@ -48,8 +61,10 @@ public class MapperUtils {
     public Function<Answer, AnswerDTO> mapEntityToAnswer() {
         return entity -> new AnswerDTO(
                 entity.getId(),
+                entity.getQuestionId(),
                 entity.getUserId(),
-                entity.getAnswer()
+                entity.getAnswer(),
+                entity.getPosition()
         );
     }
 }

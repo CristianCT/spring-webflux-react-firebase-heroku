@@ -105,3 +105,25 @@ body {
     float: right;
   }
   
+
+  /* STYLES */
+  .button-icon{
+    background-color: rgba(255, 255, 255, 0);
+    border-style: none;
+  }
+
+  .button-icon:hover{
+    color: #ea3546;
+  }
+
+  .container-answer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .position-answer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
