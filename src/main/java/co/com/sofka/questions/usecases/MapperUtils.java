@@ -27,7 +27,6 @@ public class MapperUtils {
             question.setUserId(updateQuestion.getUserId());
             question.setCategory(updateQuestion.getCategory());
             question.setQuestion(updateQuestion.getQuestion());
-            question.setUserId(updateQuestion.getUserId());
             question.setType(updateQuestion.getType());
             return question;
         };

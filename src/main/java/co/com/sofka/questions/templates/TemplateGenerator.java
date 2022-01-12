@@ -19,7 +19,7 @@ public class TemplateGenerator {
                 "                    Respuesta: " + this.answer + "\n" +
                 "                </p>\n" +
                 "                <div style=\"margin: 30px 0 10px 0;\">\n" +
-                "                    <a href=\"#\" style=\"background-color: #ea3546; padding: 15px 30px 15px 30px; border-radius: 10px; color: aliceblue; text-decoration: none; font-size: 20px;\">Ir a revisar</a>\n" +
+                "                    <a href=\"https://app-preguntas-respuestas.web.app/\" style=\"background-color: #ea3546; padding: 15px 30px 15px 30px; border-radius: 10px; color: aliceblue; text-decoration: none; font-size: 20px;\">Ir a revisar</a>\n" +
                 "                </div>\n" +
                 "            </div>\n" +
                 "        </div>\n" +
